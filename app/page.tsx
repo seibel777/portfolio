@@ -190,10 +190,10 @@ const nowPlayingFallback: NowPlayingData = {
 const COPY = {
   en: {
     headerTitle: "Seibel Portfolio",
-    name: "Joao Pedro Petermann Seibel",
+    name: "João Pedro Petermann Seibel",
     introLead: "Hi, I'm",
     introBody:
-      "a full-stack developer at RaioWeb, based in Porto Alegre, Brazil.",
+      "a full-stack developer and founder at Raio Web, based in Porto Alegre, Brazil.",
     introMore:
       "I build and ship web products with Next.js/React, Supabase, and a bias for clean UX.",
     mapTitle: "Porto Alegre map",
@@ -219,10 +219,10 @@ const COPY = {
   },
   pt: {
     headerTitle: "Seibel Portfolio",
-    name: "Joao Pedro Petermann Seibel",
+    name: "João Pedro Petermann Seibel",
     introLead: "Oi, eu sou",
     introBody:
-      "desenvolvedor full-stack na RaioWeb, em Porto Alegre, Brasil.",
+      "desenvolvedor full-stack e fundador da Raio Web, em Porto Alegre, Brasil.",
     introMore:
       "Construo e entrego produtos web com Next.js/React, Supabase e foco em UX clara e confiável.",
     mapTitle: "Mapa de Porto Alegre",
@@ -231,18 +231,18 @@ const COPY = {
     projectCta: "Ver projetos",
     cvLabel: "Baixar CV",
     cvHref: "/CV.pdf",
-    nowPlayingErrorTitle: "Nao foi possivel carregar",
-    nowPlayingErrorBody: "Nao foi possivel carregar",
+    nowPlayingErrorTitle: "Não foi possível carregar",
+    nowPlayingErrorBody: "Não foi possível carregar",
     nowPlayingPlaying: "Tocando agora",
-    nowPlayingOffline: "Offline. Ultima tocada",
-    articleTitle: "Como esta indo?",
+    nowPlayingOffline: "Offline. Última reprodução",
+    articleTitle: "Como está indo?",
     articleExcerpt:
-      "Um resumo de como comecei a construir na web e o que me motiva hoje.",
+      "Um resumo de como comecei a criar produtos para a web e do que me motiva hoje.",
     articleDate: "2 de maio de 2025",
     readMore: "Leia mais",
     contactTitle: "Quer tirar um projeto do papel?",
     contactBody:
-      "Se voce tem um projeto que quer tirar do papel, precisa de ajuda em algo ou so quer dizer oi, me chama.",
+      "Se você quer tirar um projeto do papel, precisa de ajuda ou só quer dizer oi, entre em contato.",
     contactCta: "Fale comigo",
     contactCtaAria: "Enviar email"
   }
@@ -396,7 +396,7 @@ export default function Home() {
         >
           <div className="relative h-14 w-14 shrink-0 self-start overflow-hidden rounded-full md:h-[55px] md:w-[55px] md:min-h-[55px] md:min-w-[55px]">
             <Image
-              src="https://avatars.githubusercontent.com/u/106558489?v=4"
+              src="/images/avatar-linkedin.jpg"
               alt={t.name}
               fill
               className="h-full w-full rounded-full object-cover object-center"

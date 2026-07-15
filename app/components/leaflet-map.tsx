@@ -1,8 +1,8 @@
 "use client";
 
+import L from "leaflet";
 import type { LatLngExpression, Map as LeafletMapInstance } from "leaflet";
-import { useEffect } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { useEffect, useRef } from "react";
 
 type Theme = "light" | "dark";
 
@@ -28,35 +28,61 @@ export default function LeafletMap({
   onReady,
   className
 }: LeafletMapProps) {
-  return (
-    <MapContainer
-      className={className}
-      center={center}
-      zoom={zoom}
-      scrollWheelZoom={false}
-      zoomControl={false}
-      dragging={false}
-      doubleClickZoom={false}
-      keyboard={false}
-      attributionControl={false}
-      tap={false}
-    >
-      <MapReady onReady={onReady} />
-      <TileLayer
-        url={theme === "dark" ? DARK_TILES : LIGHT_TILES}
-        attribution={ATTRIBUTION}
-        subdomains="abcd"
-      />
-    </MapContainer>
-  );
-}
-
-function MapReady({ onReady }: { onReady?: (map: LeafletMapInstance) => void }) {
-  const map = useMap();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<LeafletMapInstance | null>(null);
+  const tileLayerRef = useRef<L.TileLayer | null>(null);
 
   useEffect(() => {
-    onReady?.(map);
-  }, [map, onReady]);
+    if (!containerRef.current) return;
 
-  return null;
+    // Clean up any existing Leaflet instance on this container before initializing.
+    // This solves the React Strict Mode double-mount / hot reload issue.
+    const container = containerRef.current as any;
+    if (container._leaflet_id) {
+      container._leaflet_id = null;
+    }
+
+    const map = L.map(containerRef.current, {
+      center,
+      zoom,
+      scrollWheelZoom: false,
+      zoomControl: false,
+      dragging: false,
+      doubleClickZoom: false,
+      keyboard: false,
+      attributionControl: false,
+      tap: false
+    });
+
+    mapRef.current = map;
+
+    const tileLayer = L.tileLayer(theme === "dark" ? DARK_TILES : LIGHT_TILES, {
+      attribution: ATTRIBUTION,
+      subdomains: "abcd"
+    }).addTo(map);
+
+    tileLayerRef.current = tileLayer;
+
+    if (onReady) {
+      onReady(map);
+    }
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+    // theme changes are handled reactively in the secondary useEffect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [center, zoom, onReady]);
+
+  // Handle theme changes dynamically
+  useEffect(() => {
+    if (tileLayerRef.current) {
+      tileLayerRef.current.setUrl(theme === "dark" ? DARK_TILES : LIGHT_TILES);
+    }
+  }, [theme]);
+
+  return <div ref={containerRef} className={className} />;
 }

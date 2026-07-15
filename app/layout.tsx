@@ -20,18 +20,20 @@ const pixelify = Pixelify_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seibeldev.com.br"),
-  title: "Joao Seibel",
-  description: "Software engineer at RaioWeb based in Porto Alegre, Brazil.",
+  title: "João Seibel | Desenvolvedor full-stack",
+  description:
+    "Portfólio de João Pedro Seibel, desenvolvedor full-stack e fundador da Raio Web em Porto Alegre.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
     apple: "/favicon.png"
   },
   openGraph: {
-    title: "Joao Seibel",
-    description: "Software engineer at RaioWeb based in Porto Alegre, Brazil.",
+    title: "João Seibel | Desenvolvedor full-stack",
+    description:
+      "Portfólio de João Pedro Seibel, desenvolvedor full-stack e fundador da Raio Web em Porto Alegre.",
     url: "https://seibeldev.com.br",
-    siteName: "Joao Seibel",
+    siteName: "João Seibel",
     locale: "pt-BR",
     type: "website",
     images: [
@@ -42,8 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joao Seibel",
-    description: "Software engineer at RaioWeb based in Porto Alegre, Brazil.",
+    title: "João Seibel | Desenvolvedor full-stack",
+    description:
+      "Portfólio de João Pedro Seibel, desenvolvedor full-stack e fundador da Raio Web em Porto Alegre.",
     images: ["/images/og-image.png"]
   }
 };
